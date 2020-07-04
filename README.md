@@ -48,7 +48,7 @@ plt.hist(np.log1p(train['revenue']));
 plt.title('Distribution of log of revenue');
 ```
 
-![DistributionOfRevenue](DistributionOfRevenue.png "Analysis 1")
+![DistributionOfRevenue](/plots/DistributionOfRevenue.png "Analysis 1")
 It is better to use log for further analysis for the representation of revenue, therefore we will add a 'log_revenue' column in our data frame
 `train['log_revenue'] = np.log1p(train['revenue'])`
 
