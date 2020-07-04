@@ -34,8 +34,7 @@ Data files :
 
 ### Visualizing the Target Distribution
 
-- In this visualization, we are plotting a histogram of the distribution of **Revenue**, however, it is skew, hence others readings are not visible. To overcome this we will use logarithmic values of revenue.
-- We will use 'log1p' because there might values equal to 0 and we don't want any infinity or nones as an error
+In this visualization, we are plotting a histogram of the distribution of **Revenue**, however, it is skew, hence others readings are not visible. To overcome this we will use logarithmic values of revenue.We will use 'log1p' because there might values equal to 0 and we don't want any infinity or nones as an error
 
 
 
@@ -50,7 +49,7 @@ plt.title('Distribution of log of revenue');
 ```
 
 ![DistributionOfRevenue](DistributionOfRevenue.png "Analysis 1")
-- It is better to use log for further analysis for the representation of revenue, therefore we will add a 'log_revenue' column in our data frame
+It is better to use log for further analysis for the representation of revenue, therefore we will add a 'log_revenue' column in our data frame
 `train['log_revenue'] = np.log1p(train['revenue'])`
 
 We shall follow the same for** Budget**
