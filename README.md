@@ -205,6 +205,87 @@ eli5.show_weights(linreg, vec=vectorizer, top=20, feature_filter=lambda x: x != 
 -15.273	woman from
 ```
 
+### Data Wrangling
+##### Preprocessing Features
+Let us check is there are any null entry in release date
+
+`test.loc[test['release_date'].isnull() == True].head()`
+
+We get following result
+
+```828	3829	0	NaN	tt0210130	en	Jails, Hospitals & Hip-Hop	Jails, Hospitals &amp; Hip-Hop is a cinematic```
+
+So we will update correct infomation
+
+`test.loc[test['release_date'].isnull() == True, 'release_date'] = '05/01/00'`
+
+##### Analyzing Movie Release Dates
+
+Let us first find out few relase date formats
+
+`test.loc[test['release_date'].isnull()==False,'release_date'].head()`
+
+```
+0    7/14/07
+1    5/19/58
+2    5/23/97
+3     9/4/10
+4    2/11/05
+```
+So in our dataset, Relase date is in format "DD/MM/YY" format. Since are data is from both 20th century and 21st century, it would be beneficial if we convert it into "DD/MM/YYYY" format.
+
+```python
+def fix_date(x):
+    year = x.split('/')[2]
+    if int(year)<=19:
+        return x[:-2] + '20' + year
+    else:
+        return x[:-2] + '19' + year
+train['release_date'] = train['release_date'].apply(lambda x: fix_date(x))
+test['release_date'] = test['release_date'].apply(lambda x: fix_date(x))
+```
+
+##### Creating Features Based on Release Date
+
+Let us also convert our release date into ['year','weekday','month','weekofyear','day','quarter'] for better understanding
+
+```python
+def  process_date(df):
+    date_parts = ['year','weekday','month','weekofyear','day','quarter']
+    for part in date_parts:
+        part_col = 'release_date' + '_' + part
+        df[part_col] = getattr(df['release_date'].dt,part).astype(int)
+    return df
+train = process_date(train)
+test= process_date(test)
+```
+
+### Using Plotly to Visualize the Number of Films Per Year
+
+Let us get insights in which year no films released was highest
+
+![NoFlimsPerYear](/plots/NoFlimsPerYear.png "Analysis 7")
+
+We can see that no of films has increased significantly in the 21st century as compared to 20th.
+
+### Number of Films and Revenue Per Year
+Let us find some trends between number of films and total revenue per year and number of films and mean revenue per year.
+
+![FilmCountAndRev](/plots/FilmCountAndRev.png "Analysis 8")
+
+![FilmCountAndAvgRev](/plots/FilmCountAndAvgRev.png "Analysis 8")
+
+### Do Release Days Impact Revenue?
+Let us find a relation between Released day and it's impact on the revenue.
+
+![DaysImpactRev](/plots/DaysImpactRev.png "Analysis 9")
+
+### Relationship between Runtime and Revenue
+Lets us find the distribution of runtime and its relatioon with revenue
+![DistOfFlimsInHrs](/plots/DistOfFlimsInHrs.png "Analysis 10")
+![RuntimeVsRev](/plots/RuntimeVsRev.png "Analysis 10")
+
+
 
 
 
