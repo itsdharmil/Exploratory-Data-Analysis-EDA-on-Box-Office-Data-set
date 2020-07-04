@@ -63,7 +63,7 @@ plt.subplot(1, 2, 2)
 plt.hist(np.log1p(train['budget']));
 plt.title('Distribution of log of budget');
 ```
-![DistributionOfBudget](DistributionOfBudget.png "Analysis 1")
+![DistributionOfBudget](/plots/DistributionOfBudget.png "Analysis 1")
 
 We shall also add a 'log_budget' column for future refernce
 `train['log_budget'] = np.log1p(train['budget'])`
