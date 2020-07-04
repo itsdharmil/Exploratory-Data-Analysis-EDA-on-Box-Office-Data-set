@@ -80,7 +80,7 @@ plt.subplot(1, 2, 2)
 plt.scatter(np.log1p(train['budget']), train['log_revenue'])
 plt.title('Log Revenue vs log budget');
 ```
-![RevenueAndBudget](RevenueAndBudget.png "Analysis 2")
+![RevenueAndBudget](/plots/RevenueAndBudget.png "Analysis 2")
 
 ### Does having an Official Homepage Affect Revenue?
 
@@ -112,7 +112,7 @@ sns.catplot(x='has_homepage', y='revenue', data=train);
 plt.title('Revenue for film without and with homepage');
 ```
 
-![Homepage](Homepage.png "Analysis 3")
+![Homepage](/plots/Homepage.png "Analysis 3")
 
 On analysis, we can conclude that movies that have a webpage, have more revenue compared to those which did not.
 
@@ -131,7 +131,7 @@ sns.boxplot(x='original_language', y='log_revenue', data=train.loc[train['origin
 plt.title('Mean log revenue per language');
 ```
 
-![Language](Language.png "Analysis 4")
+![Language](/plots/Language.png "Analysis 4")
 
 On analysis, from the left graph, we can conclude that English overshadows other languages. and from the right graph, we can conclude that other languages also generate higher-value revenue. However, English is the highest in terms of total revenue.
 
@@ -148,7 +148,7 @@ plt.title('Top words in titles')
 plt.axis("off")
 plt.show()
 ```
-![WordsInTitle](WordsInTitle.png "Analysis 5")
+![WordsInTitle](/plots/WordsInTitle.png "Analysis 5")
 
 **Words in Description**
 
@@ -161,7 +161,7 @@ plt.title('Top words in overview')
 plt.axis("off")
 plt.show()
 ```
-![WordsInDes](WordsInDes.png "Analysis 5")
+![WordsInDes](/plots/WordsInDes.png "Analysis 5")
 
 ### Do Film Descriptions Impact Revenue?
 Lets us check if Description has an impact on revenue and if so which words impact the most. We will do linear regression, however since words are in string format, we have to use 'TFID" vector
@@ -179,7 +179,7 @@ linreg = LinearRegression()
 linreg.fit(overview_text, train['log_revenue'])
 eli5.show_weights(linreg, vec=vectorizer, top=20, feature_filter=lambda x: x != '<BIAS>')
 ```
-![Des](Des.png "Analysis 6")
+![Des](/plots/Des.png "Analysis 6")
 
 
 
