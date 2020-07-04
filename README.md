@@ -179,8 +179,31 @@ linreg = LinearRegression()
 linreg.fit(overview_text, train['log_revenue'])
 eli5.show_weights(linreg, vec=vectorizer, top=20, feature_filter=lambda x: x != '<BIAS>')
 ```
-![Des](/plots/Des.png "Analysis 6")
 
+```
++13.074	to
++10.131	bombing
++9.981	the
++9.777	complications
+… 3858 more positive …
+… 3315 more negative …
+-9.281	politicians
+-9.391	18
+-9.481	violence
+-9.628	escape and
+-9.716	life they
+-10.021	ones
+-10.111	sally
+-10.291	attracted to
+-10.321	who also
+-10.421	casino
+-10.614	receiving
+-10.759	kept
+-12.139	and be
+-12.939	campaign
+-13.858	mike
+-15.273	woman from
+```
 
 
 
